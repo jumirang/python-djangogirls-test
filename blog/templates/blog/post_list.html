@@ -1,32 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div>
-        <h1><a href="">Django Girls Blog</a></h1>
-    </div>
+{% extends 'blog/base.html' %}
 
-    <div>
-        <p>published: 14.06.2017, 16:40</p>
-        <h2><a href="">My first post</a></h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-    </div>
-
-    <div>
-        <p>published: 14.06.2017, 17:40</p>
-        <h2><a href="">My second post</a></h2>
-        <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-    </div>
-
+{% block content %}
     {% for post in posts %}
-        <div>
-            <p>created: {{ post.created_date }}</p>
-            <p><a href="">{{ post.title }}</a></p>
+        <div class="post">
+            <div class="date">
+                {{ post.created_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
     {%  endfor %}
-</body>
-</html>
+{% endblock content %}
